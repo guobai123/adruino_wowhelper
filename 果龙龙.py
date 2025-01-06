@@ -143,8 +143,9 @@ current_thread = None
 def monitor_region(bbox):
     with mss.mss() as sct:
         pre_text = '123'
+        i = 0
         while running:
-
+            i = i+1
             # 截取屏幕指定区域
             screenshot = sct.grab(bbox)
             img = Image.frombytes('RGB', (screenshot.width, screenshot.height), screenshot.rgb)
@@ -170,31 +171,31 @@ def monitor_region(bbox):
                 send_command('<F>')
                 print('F')
             #营救
-            elif execute_ahk_code('if (GetColor(1947,1101)="6C99") && (GetColor(1946,1101)="759F") && (GetColor(1948,1101)="6594") && (GetColor(1947,1100)="739E") && (GetColor(1947,1102)="6695")'):
-                send_command('<8>')
-                print('8')
-                time.sleep(0.1 * random.random() + 0.1)
+            #elif execute_ahk_code('if (GetColor(1947,1101)="6C99") && (GetColor(1946,1101)="759F") && (GetColor(1948,1101)="6594") && (GetColor(1947,1100)="739E") && (GetColor(1947,1102)="6695")'):
+              #  send_command('<8>')
+              #  print('8')
+              #  time.sleep(0.1 * random.random() + 0.1)
             #悖论
-            elif execute_ahk_code('if (GetColor(1954,1105)="FE93") && (GetColor(1953,1105)="EC84") && (GetColor(1955,1105)="E67F") && (GetColor(1954,1104)="FB90") && (GetColor(1954,1106)="FF94")'):
-                send_command('<N5>')
-                print('N5')
-                time.sleep(0.1 * random.random() + 0.1)
+            #elif execute_ahk_code('if (GetColor(1954,1105)="FE93") && (GetColor(1953,1105)="EC84") && (GetColor(1955,1105)="E67F") && (GetColor(1954,1104)="FB90") && (GetColor(1954,1106)="FF94")'):
+             #   send_command('<N5>')
+             #   print('N5')
+             #  time.sleep(0.1 * random.random() + 0.1)
             #先知先觉
             elif execute_ahk_code('if (GetColor(94,544)="1D1F") && (GetColor(93,544)="2421") && (GetColor(95,544)="1B1E") && (GetColor(94,543)="1D1F") && (GetColor(94,545)="1D1F")'):
                 send_command('<N8>')
                 print('N8')
                 time.sleep(0.1 * random.random() + 0.1)
             #翡翠之花
-            elif execute_ahk_code(' if (GetColor(127,943)="F898") && (GetColor(126,943)="F295") && (GetColor(128,943)="F194") && (GetColor(127,942)="F697") && (GetColor(127,944)="FC9A")'):
-                send_command('<F10>')
-                print('F10')
-                time.sleep(0.1 * random.random() + 0.1)
+            #elif execute_ahk_code(' if (GetColor(127,943)="F898") && (GetColor(126,943)="F295") && (GetColor(128,943)="F194") && (GetColor(127,942)="F697") && (GetColor(127,944)="FC9A")'):
+              #  send_command('<F10>')
+              #  print('F10')
+               # time.sleep(0.1 * random.random() + 0.1)
 
 
             else:
 
                 if text != pre_text and text != 'F2':
-                    time.sleep(0.1 * random.random())
+                    time.sleep(0.5 * random.random())
                 pre_text = text
                 if text != '':
                     print(text)
@@ -224,7 +225,14 @@ def monitor_region(bbox):
                     send_command('<3>')
 
                 # 随机延时
-                time.sleep(0.1 * random.random()+0.1)
+                time.sleep(0.4 * random.random()+0.1)
+                print(i)
+                if i >= 500:
+                    close_serial()
+                    time.sleep(0.05)
+                    open_serial()
+                    i=0
+
 
 def run_program():
     global running, current_thread

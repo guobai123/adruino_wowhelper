@@ -140,6 +140,7 @@ current_thread = None
 def monitor_region(bbox):
     with mss.mss() as sct:
         pre_text = '123'
+        i = 0
         while running:
 
             # 截取屏幕指定区域
@@ -224,6 +225,11 @@ def monitor_region(bbox):
 
                 # 随机延时
                 time.sleep(0.1 * random.random()+0.1)
+                if i >= 500:
+                    close_serial()
+                    time.sleep(0.05)
+                    open_serial()
+                    i=0
 
 def run_program():
     global running, current_thread
