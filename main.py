@@ -109,6 +109,7 @@ def preprocess_image(image):
 
     return binary_image
 
+#ocr配置及字符白名单
 def recognize_text(image, psm_mode):
     # 进行OCR
     config = f'--psm {psm_mode} --oem 3 -c tessedit_char_whitelist=0123456789ABCDEFGHNPRTUVWXYZ'
