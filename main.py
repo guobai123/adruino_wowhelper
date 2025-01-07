@@ -16,10 +16,10 @@ from pathlib import Path
 def check_file_exists(relative_path):
     file_path = Path(relative_path)
     if file_path.exists():
-        print(f"File '{relative_path}' exists.")
+        #print(f"File '{relative_path}' exists.")
         return True
     else:
-        print(f"File '{relative_path}' does not exist.")
+        #print(f"File '{relative_path}' does not exist.")
         return False
 
 
